@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catch The Butterfly</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Georgia,serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+background:linear-gradient(to bottom,#fdf6ec,#ffe4ec);
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.text{
+position:absolute;
+top:80px;
+font-size:32px;
+color:#7a4e5d;
+text-align:center;
+}
+
+.small{
+font-size:18px;
+margin-top:10px;
+}
+
+#butterfly{
+position:absolute;
+font-size:80px;
+cursor:pointer;
+transition:.4s;
+user-select:none;
+}
+
+.card{
+display:none;
+background:white;
+padding:40px;
+border-radius:25px;
+box-shadow:0 10px 40px rgba(0,0,0,.15);
+text-align:center;
+max-width:500px;
+animation:show 1s ease;
+}
+
+.card h1{
+color:#d16b86;
+margin-bottom:20px;
+}
+
+.card p{
+font-size:22px;
+line-height:1.8;
+color:#555;
+}
+
+@keyframes show{
+from{
+opacity:0;
+transform:scale(.8);
+}
+to{
+opacity:1;
+transform:scale(1);
+}
+}
+
+.flower{
+position:absolute;
+font-size:30px;
+animation:fall linear infinite;
+opacity:.8;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-100px);
+}
+100%{
+transform:translateY(110vh);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="text">
+Catch the Butterfly 🦋
+<div class="small">Tap the butterfly</div>
+</div>
+
+<div id="butterfly">🦋</div>
+
+<div class="card" id="card">
+
+<h1>You Caught It ❤️</h1>
+
+<p>
+Some people unexpectedly find<br>
+a special place in our hearts.<br><br>
+
+You are one of them. ✨🌷
+</p>
+
+</div>
+
+<script>
+
+const butterfly=document.getElementById("butterfly");
+
+function moveButterfly(){
+
+const x=Math.random()*(window.innerWidth-100);
+
+const y=Math.random()*(window.innerHeight-100);
+
+butterfly.style.left=x+"px";
+butterfly.style.top=y+"px";
+
+}
+
+setInterval(moveButterfly,1200);
+
+moveButterfly();
+
+butterfly.onclick=function(){
+
+butterfly.style.display="none";
+
+document.querySelector(".text").style.display="none";
+
+document.getElementById("card").style.display="block";
+
+for(let i=0;i<40;i++){
+
+let flower=document.createElement("div");
+
+flower.className="flower";
+
+flower.innerHTML="🌸";
+
+flower.style.left=Math.random()*100+"vw";
+
+flower.style.animationDuration=
+(Math.random()*4+3)+"s";
+
+document.body.appendChild(flower);
+
+}
+
+};
+
+</script>
+
+</body>
+</html>
